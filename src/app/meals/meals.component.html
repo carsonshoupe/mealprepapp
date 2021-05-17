@@ -1,0 +1,50 @@
+<div class="container card page">
+    <div class="title">Meals</div>
+    <div class="card section">
+        <div class="card-body">
+            <h3>How many meals would you like?</h3>
+            <div class="btn-group" role="group" aria-label="Toolbar with button groups">
+                <input type="radio" class="btn-check" value=6 (change)="onNumberOfMealsChange(6)" [checked]="numberOfMeals===6" id="btnradio1" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="btnradio1">6</label>
+
+                <input type="radio" class="btn-check" value=12 (change)="onNumberOfMealsChange(12)" [checked]="numberOfMeals===12" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="btnradio2">12</label>
+                
+                <input type="radio" class="btn-check" value=24 (change)="onNumberOfMealsChange(24)" [checked]="numberOfMeals===24" id="btnradio4" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="btnradio4">24</label>
+            </div>
+        </div>
+    </div>
+    <div class="card section">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Meals</h2>
+                <div
+                    class="drop-list"
+                    cdkDropList
+                    #mealsList="cdkDropList"
+                    [cdkDropListData]="meals"
+                    [cdkDropListConnectedTo]="[selectedMealsList]"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="card list-box" *ngFor="let meal of meals" (click)="openModal(meal)" cdkDrag>{{meal.name}}</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h2>Selected Meals</h2>
+                <div
+                    class="drop-list"
+                    cdkDropList
+                    #selectedMealsList="cdkDropList"
+                    [cdkDropListData]="selectedMeals"
+                    [cdkDropListConnectedTo]="[mealsList]"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="card list-box" *ngFor="let meal of selectedMeals" (click)="openModal(meal)" cdkDrag>{{meal.name}}</div>
+                </div>
+            </div>
+    </div>
+    </div>
+    <div align="center">
+        <Button class="btn btn-primary" (click)="onNext()" [routerLink]="['../checkout']">Ready for Checkout?</Button>
+        <Button class="btn btn-secondary" [routerLink]="['../']">Previous</Button>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container card page">
+    <div class="title">Checkout</div>
+    <p>Info explaining that order will be sent to email</p>
+    <h2>Summary of order</h2>
+    <div class="card section">
+        <h4>You selected the following {{numberOfMeals}} meals:</h4>
+        <ul>
+            <li *ngFor="let meal of selectedMeals">
+                <h3>{{meal.name}}</h3>
+                <p>{{meal.description}}</p>
+            </li>
+        </ul>
+    </div>
+    <div align="center">
+        <Button class="btn btn-primary" [routerLink]="['../confirmation']">Place Order</Button>
+        <Button class="btn btn-secondary" [routerLink]="['../meals']">Previous</Button>
+    </div>
+</div>
